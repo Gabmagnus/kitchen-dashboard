@@ -1,4 +1,4 @@
-package com.gabma.backend_kitchenmanager.domain.finalproduct.dtos;
+package com.gabma.backend_kitchenmanager.domain.finalproduct;
 
 public record FinalProductRequestDTO(
   String name,

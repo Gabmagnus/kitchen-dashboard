@@ -1,4 +1,4 @@
-package com.gabma.backend_kitchenmanager.domain.productrelashionship;
+package com.gabma.backend_kitchenmanager.domain.productrelationship;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gabma.backend_kitchenmanager.domain.finalproduct.FinalProduct;
