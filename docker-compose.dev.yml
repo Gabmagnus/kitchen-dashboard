@@ -9,26 +9,27 @@ services:
     volumes:
       - "./backend-kitchenmanager:/app"
       - "~/.m2:/root/.m2"  # Monta o cache do Maven
-
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgresql:5432/kitchenmanagerdb
       SPRING_DATASOURCE_USERNAME: gabma
       SPRING_DATASOURCE_PASSWORD: gabma
     depends_on:
-      - postgresql
+      postgresql:
+        condition: service_healthy
 
   frontend:
     container_name: kitchenmanager-frontend
-    build: 
+    build:
       context: ./frontend-kitchenmanager
       dockerfile: ./Dockerfile.dev
     ports:
-    - "3000:3000"
+      - "3000:3000"
     volumes:
-    - "./frontend-kitchenmanager:/app"
-    - /app/node_modules
+      - "./frontend-kitchenmanager:/app"
+      - /app/node_modules
     depends_on:
-    - backend
+      - backend
+      - postgresql
 
   postgresql:
     container_name: postgresql
@@ -44,6 +45,11 @@ services:
       - POSTGRES_DB=kitchenmanagerdb
     volumes:
       - db_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gabma -d kitchenmanagerdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   db_data:
