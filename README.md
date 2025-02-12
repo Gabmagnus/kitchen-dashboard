@@ -1,7 +1,3 @@
-Claro! Aqui está o seu README atualizado com as modificações solicitadas e a adição do PostgreSQL como requisito:
-
----
-
 # Kitchen Dashboard
 
 O **Kitchen Dashboard** é um gerenciador de insumos de cozinha desenvolvido de forma **fullstack**, com **React** no frontend e **Spring Boot** no backend. Este projeto foi criado para gerenciar o estoque de insumos de cozinha de forma eficiente e simples.
