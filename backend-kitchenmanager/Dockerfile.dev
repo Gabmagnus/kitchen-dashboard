@@ -1,0 +1,19 @@
+# Dockerfile.dev para Spring Boot em desenvolvimento
+
+# Usamos uma imagem com Maven para compilar e executar a aplicação
+FROM maven:3.8.5-openjdk-17-slim
+
+WORKDIR /app
+
+# Copia o arquivo pom.xml e baixa as dependências (isso agiliza reconstruções)
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# Copia o restante do código-fonte
+COPY src ./src
+
+# Expõe a porta da aplicação
+EXPOSE 8080
+
+# Inicia a aplicação no modo de desenvolvimento
+CMD ["mvn", "spring-boot:run"]
