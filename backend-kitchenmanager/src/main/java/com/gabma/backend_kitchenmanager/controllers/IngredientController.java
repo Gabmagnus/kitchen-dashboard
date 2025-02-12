@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gabma.backend_kitchenmanager.domain.ingredient.Ingredient;
-import com.gabma.backend_kitchenmanager.domain.productrelashionship.dtos.FinalProductIngredientWithNameDTO;
+import com.gabma.backend_kitchenmanager.domain.ingredient.IngredientResponseDTO;
 import com.gabma.backend_kitchenmanager.services.IngredientServices;
 
 
@@ -24,16 +23,16 @@ public class IngredientController {
 
   @CrossOrigin(origins = "*", allowedHeaders = "*")
   @GetMapping()
-  public ResponseEntity<Set<Ingredient>> getAllIngredients() {
+  public ResponseEntity<Set<IngredientResponseDTO>> getAllIngredients() {
       return ResponseEntity.ok(ingredientServices.getAllIngredients());
   }
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-@GetMapping("/byproduct")
-public ResponseEntity<Set<FinalProductIngredientWithNameDTO>> getIngredientsByProduct(@RequestParam("productId") Integer productId) throws Exception {
-    return ResponseEntity.ok(ingredientServices.getAllIngredientsByProduct(productId));
-}
-
+  @CrossOrigin(origins = "*", allowedHeaders = "*")
+  @GetMapping("/{id}")
+  public ResponseEntity<IngredientResponseDTO> getMethodName(@PathVariable Integer id) {
+      return ResponseEntity.ok(ingredientServices.getIngredientById(id));
+  }
+  
   
   
 }

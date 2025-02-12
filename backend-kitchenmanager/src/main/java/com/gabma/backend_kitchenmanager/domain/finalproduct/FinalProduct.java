@@ -3,7 +3,7 @@ package com.gabma.backend_kitchenmanager.domain.finalproduct;
 import java.io.Serializable;
 import java.util.Set;
 
-import com.gabma.backend_kitchenmanager.domain.productrelashionship.FinalProductIngredient;
+import com.gabma.backend_kitchenmanager.domain.productrelationship.FinalProductIngredient;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,5 +35,5 @@ public class FinalProduct implements Serializable {
   private Double price;
 
   @OneToMany(mappedBy = "finalProductId", fetch = FetchType.LAZY)
-  private Set<FinalProductIngredient> finalProductIngredient;
+  private Set<FinalProductIngredient> finalProductIngredients;
 }

@@ -3,7 +3,7 @@ package com.gabma.backend_kitchenmanager.domain.ingredient;
 import java.io.Serializable;
 import java.util.Set;
 
-import com.gabma.backend_kitchenmanager.domain.productrelashionship.FinalProductIngredient;
+import com.gabma.backend_kitchenmanager.domain.productrelationship.FinalProductIngredient;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -45,6 +45,6 @@ public class Ingredient implements Serializable {
   private String supplier;
 
   @OneToMany(mappedBy = "ingredientId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<FinalProductIngredient> finalProductIngredient;
+  private Set<FinalProductIngredient> finalProductIngredients;
 
 }
