@@ -22,7 +22,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-interface FinalProductIngredient {
+interface FinalProductIngredients {
   id: number;
   name: string;
   quantity: number;
@@ -36,14 +36,14 @@ interface Ingredient {
   currentStock: number;
   price: number;
   supplier: string;
-  finalProductIngredient: FinalProductIngredient[];
+  finalProductIngredients: FinalProductIngredients[];
 }
 
 interface Product {
   id: number;
   name: string;
   price: number;
-  finalProductIngredient: FinalProductIngredient[];
+  finalProductIngredients: FinalProductIngredients[];
 }
 
 function App() {
@@ -95,12 +95,12 @@ function App() {
                       <TableHead>Quantidade</TableHead>
                     </TableHeader>
                     <TableBody>
-                      {product.finalProductIngredient.map((ingredient) => (
-                      <TableRow>
-                        <TableCell>{ingredient.name}</TableCell>
-                        <TableCell>{ingredient.quantity}</TableCell>
-                      </TableRow>
-                      ))}
+                      {product?.finalProductIngredients?.map((finalIngredient) => (
+                        <TableRow key={finalIngredient.id}>
+                          <TableCell>{finalIngredient.name}</TableCell>
+                          <TableCell>{finalIngredient.quantity}</TableCell>
+                        </TableRow>
+                        ))}
                     </TableBody>
                   </Table>
                   <DialogFooter>
